@@ -118,12 +118,14 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        elif args not in HBNBCommand.classes:
+        argv = args.split(" ")
+        class_name = argv[0]
+        if class_name not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        new_instance = HBNBCommand.classes[args]()
-        storage.save()
+        new_instance = HBNBCommand.classes[class_name]()
         print(new_instance.id)
+        add_attr(new_instance, args)
         storage.save()
 
     def help_create(self):
@@ -319,6 +321,29 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
+
+def add_attr(obj, args):
+    """ parse args as kwargs """
+    if args is None:
+        return {}
+
+    # create Place city_id="0001" user_id="0001" ...
+    # args = Place city_id="0001" user_id="0001" ...
+    args_list = args.split(" ")
+    # remove class arg
+    class_arg = args_list.pop(0)
+
+    if args_list == []:
+        return {}
+
+    # change string items to dicts
+    # "obj=value"
+    for item in args_list:
+        pairs = item.split('=')
+        key, value = pairs[0], eval(pairs[1])
+
+        setattr(obj, key, value)
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
