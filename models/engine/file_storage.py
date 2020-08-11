@@ -10,7 +10,6 @@ class FileStorage:
 
     def all(self, cls=None):
         """Returns a dictionary of models currently in storage"""
-<<<<<<< HEAD
         # If all() doesn't get an input
         if cls == None:
             return FileStorage.__objects
@@ -26,9 +25,6 @@ class FileStorage:
             if cls_name in objects:
                 filtered_dict[objects] = FileStorage.__objects[objects]
         return filtered_dict
-=======
-        return FileStorage.__objects
->>>>>>> parent of 94906c0... Logan (#4)
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
@@ -69,12 +65,7 @@ class FileStorage:
 
     def delete(self, obj=None):
         """Deletes abject if required"""
-<<<<<<< HEAD
         # Generate the object name
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
         if key in FileStorage.__objects:
             FileStorage.__objects.pop(key)
-=======
-        if obj in FileStorage.__objects:
-            del FileStorage.__objects[obj]
->>>>>>> parent of 94906c0... Logan (#4)
