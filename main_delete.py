@@ -3,8 +3,6 @@
 """
 from models.engine.file_storage import FileStorage
 from models.state import State
-from models.user import User
-from models.place import Place
 
 fs = FileStorage()
 
@@ -33,26 +31,6 @@ another_state.name = "Nevada"
 fs.new(another_state)
 fs.save()
 print("Another State: {}".format(another_state))
-
-# Create another User
-new_user= User()
-new_user.name = "Jeff"
-fs.new(new_user)
-fs.save()
-print("New User: {}".format(new_user))
-
-# Create another Place
-new_place = Place()
-new_place.name = "Funhouse"
-fs.new(new_place)
-fs.save()
-print("new_place: {}".format(new_place))
-
-everything = fs.all()
-print("\n\nall")
-for item in everything.keys():
-    print(everything[item])
-print("\n")
 
 # All States
 all_states = fs.all(State)

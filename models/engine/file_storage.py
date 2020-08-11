@@ -10,17 +10,25 @@ class FileStorage:
 
     def all(self, cls=None):
         """Returns a dictionary of models currently in storage"""
-        if cls is None:
+<<<<<<< HEAD
+        # If all() doesn't get an input
+        if cls == None:
             return FileStorage.__objects
-        
-        filter_dict = {}
-        keys = FileStorage.__objects.keys()
-        class_name = cls.__name__
-        for key in keys:
-            if class_name in key:
-                filter_dict[key] = FileStorage.__objects[key]
 
-        return filter_dict
+        # If all() does get a class as input
+        cls_name = cls.__name__
+        index_of_objects = FileStorage.__objects.keys() # Gets an index of keys
+                                                        # in the object
+
+        # Take advantage of the index and scan for the class name
+        filtered_dict = {}
+        for objects in index_of_objects:
+            if cls_name in objects:
+                filtered_dict[objects] = FileStorage.__objects[objects]
+        return filtered_dict
+=======
+        return FileStorage.__objects
+>>>>>>> parent of 94906c0... Logan (#4)
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
@@ -61,8 +69,12 @@ class FileStorage:
 
     def delete(self, obj=None):
         """Deletes abject if required"""
-        class_name = obj.__class__.__name__
-        obj_id = obj.id
-        item = "{}.{}".format(class_name, obj.id)
-        if item in FileStorage.__objects:
-            FileStorage.__objects.pop(item)
+<<<<<<< HEAD
+        # Generate the object name
+        key = "{}.{}".format(obj.__class__.__name__, obj.id)
+        if key in FileStorage.__objects:
+            FileStorage.__objects.pop(key)
+=======
+        if obj in FileStorage.__objects:
+            del FileStorage.__objects[obj]
+>>>>>>> parent of 94906c0... Logan (#4)
