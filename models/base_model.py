@@ -7,15 +7,17 @@ from sqlalchemy import Column, String, ForeignKey
 
 
 Base = declarative_base()
+
+
 class BaseModel():
     """A base class for all hbnb models"""
-    id =  Column(String(60),
-          primary_key=True,
-          nullable=False)
-    created_at = Column(String,
+    id = Column(String(60),
+                primary_key=True,
+                nullable=False)
+    created_at = Column(String(128),
                         nullable=False,
                         default=datetime.utcnow())
-    updated_at = Column(String,
+    updated_at = Column(String(128),
                         nullable=False,
                         default=datetime.utcnow())
 
@@ -53,10 +55,10 @@ class BaseModel():
         dictionary.update(self.__dict__)
         dictionary.update({'__class__':
                           (str(type(self)).split('.')[-1]).split('\'')[0]})
-        dictionary['created_at'] = self.created_at.isoformat()
-        dictionary['updated_at'] = self.updated_at.isoformat()
+        dictionary['created_at'] = self.created_at  # .isoformat()
+        dictionary['updated_at'] = self.updated_at  # .isoformat()
         try:
-            dictionary.pop('sa_instance_state')
+            dictionary.pop('_sa_instance_state')
         except:
             pass
         return dictionary
