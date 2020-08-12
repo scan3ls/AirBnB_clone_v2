@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 """ Place Module for HBNB project """
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, String, Integer, Float, ForeignKey
 
-class Place(BaseModel):
+
+class Place(BaseModel, Base):
     """ A place to stay """
     city_id = ""
     user_id = ""
@@ -45,5 +46,21 @@ class Place(BaseModel):
                        nullable=True)
     latitude = Column(Float,
                       nullable=True)
-    reviews = relationship("Review", back_populates="places", cascade="all, delete")
+
+    user = relationship(
+            "User",
+            back_populates="places",
+            cascade="all, delete"
+        )
+    reviews = relationship(
+            "Review",
+            back_populates="place",
+            cascade="all, delete"
+        )
+    cities = relationship(
+            "City",
+            back_populates="places",
+            cascade="all, delete"
+        )
+
     # Last bullet point @ number 9

@@ -4,6 +4,7 @@ from models.base_model import BaseModel, Base
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, String, Integer, ForeignKey
 
+
 class City(BaseModel, Base):
     """ The city class, contains state ID and name """
     state_id = ""
@@ -15,4 +16,14 @@ class City(BaseModel, Base):
     state_id = Column(String(60),
                       ForeignKey("states.id"),
                       nullable=False)
-    place = relationship("Place", back_populates="cities", cascade="all, delete")
+
+    state = relationship(
+            "State",
+            back_populates="cities",
+            cascade="all, delete"
+        )
+    places = relationship(
+            "Place",
+            back_populates="cities",
+            cascade="all, delete"
+        )
