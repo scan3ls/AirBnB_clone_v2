@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """A RANDOM DOCSTRING"""
 
-class DBStorage()
+class DBStorage():
     """CLASS DBSTORAGE"""
     __engine = None
     __session = None
