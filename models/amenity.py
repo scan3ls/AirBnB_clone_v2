@@ -2,6 +2,8 @@
 """ State Module for HBNB project """
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, Integer, ForeignKey, Table
+from sqlalchemy.orm import relationship
+
 
 class Amenity(BaseModel, Base):
     name = ""
@@ -9,10 +11,5 @@ class Amenity(BaseModel, Base):
     __tablename__ = "amenities"
     name = Column(String(128),
                   nullable=False)
-    association_table = Table('association',
-                              Base.metadata,
-                              Column('left'
-                                     Integer,
-                                     ForeignKey('left.id')),
-                              Column('right')
-    place_amenities = 
+    place_amenities = relationship('Place',
+                                    back_populates="amenities")

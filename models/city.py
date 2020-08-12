@@ -22,8 +22,6 @@ class City(BaseModel, Base):
             back_populates="cities",
             cascade="all, delete"
         )
-    places = relationship(
-            "Place",
-            back_populates="cities",
-            cascade="all, delete"
-        )
+    places = relationship("Place",
+                          back_populates="cities",
+                          cascade="all, delete")

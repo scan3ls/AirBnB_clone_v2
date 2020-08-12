@@ -5,10 +5,25 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Column, String, Integer, Float, ForeignKey, Table
 import os
 
+metadata = Base.metadata
+place_amenity = Table('place_amenity',
+                       metadata,
+                       Column('place_id',
+                               String(60),
+                               ForeignKey('places.id'),
+                               primary_key=True,
+                               nullable=False),
+                        Column('amenity_id',
+                               String(60),
+                               ForeignKey('amenity.id'),
+                               primary_key=True,
+                               nullable=False))
+
 class Place(BaseModel, Base):
     """ A place to stay """
+    __tablename__ = "places"
 
-    if os.environ.get("HBNB_TYPE_STORAGE") != 'db'
+    if False:
         # ---------------------------------- #
         #           FileStorage              #
         # ---------------------------------- #
@@ -76,8 +91,7 @@ class Place(BaseModel, Base):
                 back_populates="places",
                 cascade="all, delete"
             )
-        reviews = relationship(
-                "Review",
+        reviews = relationship("Review",
                 back_populates="place",
                 cascade="all, delete"
             )
@@ -86,23 +100,9 @@ class Place(BaseModel, Base):
                 back_populates="places",
                 cascade="all, delete"
             )
-
-        metadata = Base.metadata
-        place_amenity = Table('place_amenity',
-                              metadata,
-                              Column('place_id',
-                                     String(60),
-                                     ForeignKey('places.id'),
-                                     primary_key=True,
-                                     nullable=False),
-                              Column('amenity_id',
-                                     String(60),
-                                     ForeignKey('amenity.id'),
-                                     primary_key=True,
-                                     nullable=False))
         amenities = relationship('Amenity',
                                  secondary=place_amenity,
-                                 back_populates="place_amenity",
+                                 back_populates="place_amenities",
                                  viewonly=False)
 
     # Last bullet point @ number 9
