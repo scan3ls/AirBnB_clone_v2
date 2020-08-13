@@ -15,7 +15,7 @@ class State(BaseModel, Base):
                   nullable=False)
     cities = relationship(
             "City",
-            back_populates="state",
+            backref="state",
             cascade="all, delete"
         )
 

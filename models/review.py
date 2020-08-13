@@ -19,14 +19,3 @@ class Review(BaseModel, Base):
     user_id = Column(String(60),
                      ForeignKey('users.id'),
                      nullable=False)
-
-    user = relationship(
-            "User",
-            back_populates="reviews",
-            cascade="all, delete"
-        )
-    place = relationship(
-            "Place",
-            back_populates="reviews",
-            cascade="all, delete"
-        )
