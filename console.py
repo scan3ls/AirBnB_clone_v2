@@ -343,8 +343,20 @@ def add_attr(obj, args):
     for item in args_list:
         pairs = item.split('=')
         key, value = pairs[0], eval(pairs[1])
+        change, value = valid_arg(value)
+        if change is True:
+            setattr(obj, key, value)
 
-        setattr(obj, key, value)
+def valid_arg(value=None):
+    """  """
+    valid_types = [int, float, str]
+    if type(value) not in valid_types:
+        return False, value
+
+    if type(value) is str:
+        value = value.replace("_", " ")
+    
+    return True, value
 
 
 if __name__ == "__main__":
