@@ -7,8 +7,8 @@ sudo apt-get install nginx
 mkdir -p /data/web_static/shared
 mkdir -p /data/web_static/current
 mkdir -p /data/web_static/releases/test
-echo "I'm Alive!" > /data/web_static/shared/index.html
-ln -sf /data/web_static/releases/test /data/web_static/current
+echo "I'm Alive!" > /data/web_static/releases/test/index.html
+ln -sf /data/web_static/current /data/web_static/releases/test
 chown -R ubuntu:ubuntu /data
-sed -i '/^\tserver_name*/a\\n\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}' /etc/nginx/sites-available/default
+sed '/^\tserver_name*/a\\n\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}' /etc/nginx/sites-available/default
 service nginx restart 
