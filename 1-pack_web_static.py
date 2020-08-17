@@ -28,7 +28,7 @@ def do_pack():
     local('mkdir -p versions')
 
     try:
-        local('tar -cvzf {} web_static'.format(file))
+        local('tar -cvzf versions/{} web_static/'.format(file))
         path = "versions/" + file
         return path
     except Exception:
