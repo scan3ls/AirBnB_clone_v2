@@ -5,8 +5,8 @@
 #	- Update NGINX conf file to serve content from /data/web_static/current/ as /data/web_static/current/
 sudo apt-get -y install nginx
 mkdir -p /data/web_static/shared/
-mkdir -p /data/web_static/current/
-mkdir -p /data/web_static/releases/test
+mkdir -p /data/web_static/releases/
+mkdir -p /data/web_static/releases/test/
 echo "I'm Alive!" > /data/web_static/shared/index.html
 ln -sf /data/web_static/releases/test /data/web_static/current
 chown -R ubuntu:ubuntu /data
