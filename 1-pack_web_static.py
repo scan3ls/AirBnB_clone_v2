@@ -21,16 +21,15 @@ def do_pack():
         - If the compression fails, None's returned.
     """
     from fabric.api import local
-    from datetime.datetime import now as time
-    from os.path import isdir
+    from datetime import datetime as time
 
-    file = "web_static_" + time().strftime("%Y%m%d%H%M%S") + ".tgz"
+    file = "web_static_" + time.now().strftime("%Y%m%d%H%M%S") + ".tgz"
 
-    local('mkdir -p ./versions')
+    local('mkdir -p versions')
 
     try:
-        local('tar -cfv {} ./versions/'.format(file))
+        local('tar -cvzf {} web_static'.format(file))
         path = "versions/" + file
         return path
-    except:
+    except Exception:
         return None
