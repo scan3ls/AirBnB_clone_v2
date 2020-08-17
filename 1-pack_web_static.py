@@ -29,7 +29,7 @@ def do_pack():
     local('mkdir -p ./versions')
 
     try:
-        local('tar -cfv {} versions/{}'.format(file, file))
+        local('tar -cfv {} ./versions/'.format(file))
         path = "versions/" + file
         return path
     except:
