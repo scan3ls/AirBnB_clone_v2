@@ -26,8 +26,7 @@ def do_pack():
 
     file = "web_static_" + time().strftime("%Y%m%d%H%M%S") + ".tgz"
 
-    if isdir('/versions'):
-        local('mkdir versions')
+    local('mkdir -p ./versions')
 
     try:
         local('tar -cfv {} versions/{}'.format(file, file))
