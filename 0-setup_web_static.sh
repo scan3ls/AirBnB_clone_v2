@@ -1,4 +1,4 @@
-#!/usr/bin/env bin
+#!/usr/bin/env bash
 # Installs NGINX and sets up the initial file structure for the rest of the project
 #	- Creates a symbolic link between the shared/ and releases/ folders
 #	- Gives the ownership of the data/ folder to user and group called 'ubuntu'
