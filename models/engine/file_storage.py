@@ -70,3 +70,7 @@ class FileStorage:
             key = "{}.{}".format(obj.__class__.__name__, obj.id)
             if key in FileStorage.__objects:
                 FileStorage.__objects.pop(key)
+
+    def close(self):
+        """ calls reload for deserializing JSON file objects """
+        self.reload()
