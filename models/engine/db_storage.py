@@ -33,7 +33,7 @@ class DBStorage():
                 key = "{}.{}".format(item.to_dict()['__class__'], item.id)
                 value = item
                 return_dict.update({key: value})
-                print(return_dict)
+                # print(return_dict)
             return return_dict
         # TO DO!
 
