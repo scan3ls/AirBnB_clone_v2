@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """A RANDOM DOCSTRING"""
 
+
 class DBStorage():
     """CLASS DBSTORAGE"""
     __engine = None
@@ -20,7 +21,7 @@ class DBStorage():
         up = "mysql+mysqldb://{}:{}@{}/{}".format(usr, pwd, host, db)
         self.__engine = create_engine(up, pool_pre_ping=True)
 
-        # To Do: drop all tables if the environment variable HBNB_ENV is equal to test
+        # To Do: drop all tables if  HBNB_ENV is equal to test
 
     def all(self, cls=None):
         """all"""
@@ -65,7 +66,7 @@ class DBStorage():
 
         Base.metadata.create_all(self.__engine)
 
-        self.__session = sessionmaker(bind = self.__engine)()
+        self.__session = sessionmaker(bind=self.__engine)()
 
     def close(self):
         """ close the session """

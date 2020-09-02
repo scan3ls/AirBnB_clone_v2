@@ -11,14 +11,12 @@ class FileStorage:
     def all(self, cls=None):
         """Returns a dictionary of models currently in storage"""
         # If all() doesn't get an input
-        if cls == None:
+        if cls is None:
             return FileStorage.__objects
 
         # If all() does get a class as input
         cls_name = cls.__name__
-        index_of_objects = FileStorage.__objects.keys() # Gets an index of keys
-                                                        # in the object
-
+        index_of_objects = FileStorage.__objects.keys()
         # Take advantage of the index and scan for the class name
         filtered_dict = {}
         for objects in index_of_objects:
